@@ -1,7 +1,7 @@
-import * as express from 'express';
+import express from 'express';
 import { urlencoded, json } from 'body-parser';
-import * as compression from 'compression';
-import * as cookieParser from 'cookie-parser';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
 import routes from './routes';
 
 const app = express();

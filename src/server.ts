@@ -1,6 +1,6 @@
-import './env';
-import * as errorhandler from 'errorhandler';
-import * as debug from 'debug';
+import 'dotenv/config';
+import errorhandler from 'errorhandler';
+import debug from 'debug';
 import app from './app';
 
 if (process.env.NODE_ENV === 'development') {
@@ -11,6 +11,6 @@ const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   const info = debug('app:info');
-  info(`App is running on port ${port}`);
-  info(`App environment is ${process.env.NODE_ENV}`);
+  info('App is running on port %d', port);
+  info('App environment is %s', process.env.NODE_ENV);
 });

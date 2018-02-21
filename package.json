@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "start": "npm run build-ts && npm run serve",
+    "start": "npm run build && npm run serve",
+    "build": "npm run build-ts",
     "test": "jest --forceExit --coverage --verbose --runInBand",
     "lint": "tslint -p .",
     "serve": "node dist/server.js",
