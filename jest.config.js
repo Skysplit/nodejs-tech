@@ -12,4 +12,7 @@ module.exports = {
     '**/*.(test|spec).(ts|js)',
   ],
   testEnvironment: 'node',
+  moduleNameMapper: {
+    '@app/(.*)$': '<rootDir>/src/$1',
+  }
 }
