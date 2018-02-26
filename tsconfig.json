@@ -2,14 +2,16 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "esModuleInterop": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
     "removeComments": true,
-    "noUnusedLocals": true,
     "outDir": "dist",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*"
