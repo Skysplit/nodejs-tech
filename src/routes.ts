@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { sampleController } from '@app/modules/sample';
-import { homeController } from '@app/modules/home';
+import { sampleRouter } from '@app/modules/sample';
+import { homeRouter } from '@app/modules/home';
 
 const router = Router();
 
-router.use('/', homeController);
-router.use('/sample', sampleController);
+router.use('/', homeRouter);
+router.use('/sample', sampleRouter);
 
 export default router;
