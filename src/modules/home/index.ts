@@ -1,1 +1,1 @@
-export { default as homeController } from './homeController';
+export { default as homeRouter } from './homeRouter';

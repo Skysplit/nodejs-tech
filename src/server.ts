@@ -1,17 +1,21 @@
-import 'module-alias/register';
-import 'dotenv/config';
 import errorhandler from 'errorhandler';
 import debug from 'debug';
-import app from '@app/app';
+import createApp from '@app/createApp';
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(errorhandler());
-}
+(async () => {
+  const app = await createApp();
 
-const port = process.env.PORT || 8000;
+  if (process.env.NODE_ENV === 'development') {
+    app.use(errorhandler());
+  }
 
-app.listen(port, () => {
-  const info = debug('app:info');
-  info('App is running on port %d', port);
-  info('App environment is %s', process.env.NODE_ENV);
-});
+  const port = process.env.PORT || 8000;
+  const server = app.listen(port);
+
+  server.on('error', error => debug('app:error')(error));
+  server.on('listening', () => {
+    const info = debug('app:info');
+    info('App is running on port %d', port);
+    info('App environment is %s', process.env.NODE_ENV);
+  });
+})();
