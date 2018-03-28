@@ -10,9 +10,10 @@
     "lint": "tslint --format stylish --project .",
     "test-ci": "cross-env NODE_ENV=testing jest --forceExit --coverage --verbose --runInBand",
     "watch": "concurrently -k -p \"[{name}]\" -n \"Node\" -c \"green.bold\" \"npm run watch-node\"",
-    "watch-node": "nodemon -e ts,js --ignore '*.spec.ts' src/index.js",
+    "watch-node": "nodemon src/index.js",
     "watch-test": "cross-env NODE_ENV=testing jest --watch",
     "typeorm": "typeorm",
+    "debug": "nodemon --inspect src/index.js",
     "cli": "ts-node -r dotenv/config -r tsconfig-paths/register"
   },
   "author": "",
