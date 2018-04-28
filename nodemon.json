@@ -1,8 +1,14 @@
 {
   "ext": "ts js",
+  "execMap": {
+    "ts": "ts-node"
+  },
   "env": {
     "NODE_ENV": "development"
   },
+  "watch": [
+    "src/**/*.ts"
+  ],
   "ignore": [
     "*.spec.ts"
   ]
