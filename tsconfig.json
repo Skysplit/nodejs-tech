@@ -3,14 +3,29 @@
     "module": "commonjs",
     "target": "es6",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "sourceMap": true,
+    "allowJs": true,
     "baseUrl": ".",
+    "outDir": "./dist",
     "paths": {
       "@app/*": ["./src/*"]
     }
-  }
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "./src/migration/**",
+    "./src/subscriber/**",
+    "*.spec.ts",
+    "**/__tests__/**/*"
+  ]
 }
