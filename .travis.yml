@@ -1,11 +1,17 @@
 language: node_js
 
+services:
+  - mysql
+
 node_js:
   - 8.9
 
 cache:
   directories:
     - node_modules
+
+before_install:
+  - mysql -e 'CREATE DATABASE nodetech_testing;'
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -14,3 +20,9 @@ before_script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+env:
+  globals:
+    - APP_SECRET=testing
+    - TYPEORM_USERNAME=travis
+    - NODE_ENV=testing

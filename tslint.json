@@ -6,5 +6,8 @@
     "no-console": {
       "severity": "warn"
     }
+  },
+  "linterOptions": {
+    "exclude": ["src/migration/**/*.ts"]
   }
 }

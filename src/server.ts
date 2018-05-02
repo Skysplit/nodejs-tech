@@ -1,13 +1,16 @@
 import debug from 'debug';
+import errorhandler from 'errorhandler';
 import createApp from '@app/createApp';
 import createConnection from '@app/database';
-import useErrorHandler from '@app/utils/useErrorHandler';
+import isProduction from '@app/utils/isProduction';
 
 (async () => {
   await createConnection();
-  const app = await createApp();
+  const app = createApp();
 
-  useErrorHandler(app);
+  if (!isProduction()) {
+    app.use(errorhandler());
+  }
 
   const port = process.env.PORT || 8000;
   const server = app.listen(port);

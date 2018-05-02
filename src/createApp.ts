@@ -2,9 +2,10 @@ import express from 'express';
 import { urlencoded, json } from 'body-parser';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import passport from 'passport';
 import routes from './routes';
 
-const createApp = async () => {
+const createApp = () => {
   const app = express();
 
   // App settings
@@ -15,6 +16,7 @@ const createApp = async () => {
   app.use(cookieParser());
   app.use(json());
   app.use(urlencoded({ extended: true }));
+  app.use(passport.initialize());
 
   // Mount routes
   app.use(routes);

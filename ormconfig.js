@@ -1,55 +1,53 @@
-
 const path = require('path');
 
 const env = process.env.NODE_ENV || 'production';
-const isDevelopment = env === 'development';
-const isProduction = env === 'production';
-const isTesting = env === 'testing';
 
-const databases = {
-  production: {
-    type: 'sqlite',
-    database: path.resolve(__dirname, 'database', 'production.sqlite'),
-  },
-  development: {
-    type: 'sqlite',
-    database: path.resolve(__dirname, 'database', 'development.sqlite'),
-  },
-  testing: {
-    type: 'sqlite',
-    testing: ':memory:',
-  }
-}
-
-const entities = {
-  production: ['dist/**/*.model.js'],
-  testing: ['src/**/*.model.ts'],
-  development: ['src/**/*.model.ts'],
-}
-
-const migrations = {
-  production: ['dist/migration/**/*.js'],
-  testing: ['src/migration/**/*.ts'],
-  development: ['src/migration/**/*.ts'],
-}
-
-const subscribers = {
-  production: ['dist/subscriber/**/*.js'],
-  testing: ['src/subscriber/**/*.ts'],
-  development: ['src/subscriber/**/*.ts'],
-}
-
-
-module.exports = {
-  ...(databases[env] || databases.production),
-  synchronize: !isProduction,
-  logging: isDevelopment,
-  entities: entities[env] || entities.production,
-  migrations: migrations[env] || migrations.production,
-  subscribers: subscribers[env] || subscribers.production,
+const commonConfig = {
+  name: 'default',
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  migrationsRun: true,
   cli: {
     entitiesDir: 'src/entity',
     migrationsDir: 'src/migration',
     subscribersDir: 'src/subscriber'
   }
+};
+
+const productionConfig = {
+  ...commonConfig,
+  type: 'mysql',
+  host: 'localhost',
+  database: 'nodetech_production',
+  entities: ['dist/module/**/*.model.js'],
+  migrations: ['dist/migration/**/*.js'],
+  subscribers: ['dist/subscriber/**/*.js'],
 }
+
+const developmentConfig = {
+  ...commonConfig,
+  logging: true,
+  type: 'mysql',
+  host: 'localhost',
+  database: 'nodetech_development',
+  entities: ['src/module/**/*.model.ts'],
+  migrations: ['src/migration/**/*.ts'],
+  subscribers: ['src/subscriber/**/*.ts'],
+};
+
+
+const testingConfig = {
+  ...developmentConfig,
+  migrationsRun: false,
+  logging: false,
+  type: 'mysql',
+  database: 'nodetech_testing',
+};
+
+const config = {
+  production: productionConfig,
+  development: developmentConfig,
+  testing: testingConfig,
+}
+
+module.exports = config[env] || config.production;
