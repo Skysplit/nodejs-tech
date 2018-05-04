@@ -1,9 +1,16 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
+import Link from '@next/link';
 
 export default class HomePage extends PureComponent<{}> {
   render() {
     return (
-      <h1>Hello world</h1>
+      <Fragment>
+        <h1>Hello world</h1>
+
+        <Link route="test">
+          <a>Go to some page</a>
+        </Link>
+      </Fragment>
     );
   }
 }

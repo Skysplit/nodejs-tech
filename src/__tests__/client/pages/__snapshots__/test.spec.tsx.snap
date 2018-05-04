@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> #render should display component 1`] = `
+<LinkRoutes
+  route="home"
+>
+  <a>
+    Home
+  </a>
+</LinkRoutes>
+`;

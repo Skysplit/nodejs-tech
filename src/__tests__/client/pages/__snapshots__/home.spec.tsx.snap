@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HomePage /> #render should display component 1`] = `
-<h1>
-  Hello world
-</h1>
+<React.Fragment>
+  <h1>
+    Hello world
+  </h1>
+  <LinkRoutes
+    route="test"
+  >
+    <a>
+      Go to some page
+    </a>
+  </LinkRoutes>
+</React.Fragment>
 `;
