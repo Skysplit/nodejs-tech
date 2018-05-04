@@ -12,8 +12,10 @@ module.exports = {
   },
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
-    '!src/{createApp,server}.ts',
-    '!src/index.js',
+    '!src/**/__tests__/**/*',
+    '!src/{createApp,server,database,index}.ts',
+    '!src/{bootstrap}/**/*',
     '!ormconfig.js',
   ],
+  setupTestFrameworkScriptFile: './src/__tests__/__setup.ts'
 }

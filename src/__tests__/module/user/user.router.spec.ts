@@ -1,0 +1,88 @@
+import request from 'supertest';
+import createApp from '@app/createApp';
+import User from '@app/module/user/user.model';
+import { Application } from 'express';
+import createJWT from '@app/utils/createJWT';
+
+describe('/users', () => {
+  let app: Application;
+  let user: User;
+
+  beforeAll(async () => {
+    app = await createApp();
+    user = User.create({
+      email: 'test@example.com',
+      password: 'Secret99',
+    });
+
+    await user.save();
+  });
+
+  describe('/me#GET', () => {
+    test('should access user profile', async () => {
+      const token = createJWT(user.toJSON());
+      const response = await request(app)
+        .get('/users/me')
+        .set({ Authorization: `Bearer ${token}` });
+
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual(
+        JSON.parse(JSON.stringify(user)),
+      );
+    });
+
+    describe('when no bearer token is provided', () => {
+      test('should forbid profile access', async () => {
+        const response = await request(app).get('/users/me');
+
+        expect(response.status).toEqual(401);
+      });
+    });
+  });
+
+  describe('/login#POST', () => {
+    test('should respond with JWT token', async () => {
+      const response = await request(app).post('/users/login').send({
+        email: 'test@example.com',
+        password: 'Secret99',
+      });
+
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual({
+        success: true,
+        token: expect.any(String),
+      });
+    });
+
+    describe('when no credentials are provided', () => {
+      test('should display missing credentials', async () => {
+        const response = await request(app).post('/users/login');
+        expect(response.status).toEqual(422);
+        expect(response.body).toMatchSnapshot();
+      });
+    });
+
+    describe('when wrong password is provided', () => {
+      test('should display wrong credentials', async () => {
+        const response = await request(app).post('/users/login').send({
+          email: 'test@example.com',
+          password: 'Secret1',
+        });
+        expect(response.status).toEqual(422);
+        expect(response.body).toMatchSnapshot();
+      });
+    });
+
+    describe('when wrong email is provided', () => {
+      test('should display wrong credentials', async () => {
+        const response = await request(app).post('/users/login').send({
+          email: 'wrong@example.com',
+          password: 'Secret99',
+        });
+        expect(response.status).toEqual(422);
+        expect(response.body).toMatchSnapshot();
+      });
+    });
+  });
+
+});

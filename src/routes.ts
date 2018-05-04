@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { homeRouter } from '@app/modules/home';
-import { listRouter } from '@app/modules/list';
+import homeRouter from '@app/module/home/home.router';
+import userRouter from '@app/module/user/user.router';
 
 const router = Router();
 
 router.use('/', homeRouter);
-router.use('/lists', listRouter);
+router.use('/users', userRouter);
 
 export default router;

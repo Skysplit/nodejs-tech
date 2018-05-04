@@ -1,5 +1,3 @@
 import { createConnection } from 'typeorm';
 
-export default async () => {
-  return await createConnection();
-};
+export default async () => await createConnection();

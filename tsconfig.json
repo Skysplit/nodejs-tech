@@ -20,12 +20,5 @@
   },
   "include": [
     "./src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "./src/migration/**",
-    "./src/subscriber/**",
-    "*.spec.ts",
-    "**/__tests__/**/*"
   ]
 }
