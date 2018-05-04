@@ -9,13 +9,18 @@ module.exports = {
   ],
   moduleNameMapper: {
     '@app/(.*)$': '<rootDir>/src/$1',
+    '@server/(.*)$': '<rootDir>/src/server/$1',
+    '@client/(.*)$': '<rootDir>/src/client/$1',
+    '@next/(.*)$': '<rootDir>/src/next/$1',
   },
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
+    // Ignore patterns
+    '!src/index.ts',
     '!src/**/__tests__/**/*',
-    '!src/{createApp,server,database,index}.ts',
-    '!src/{bootstrap}/**/*',
-    '!ormconfig.js',
+    '!src/server/{database,index}.ts',
+    '!src/{bootstrap,next}/**/*',
+    '!{ormconfig,next.config}.js',
   ],
   setupTestFrameworkScriptFile: './src/__tests__/__setup.ts'
 }

@@ -1,5 +1,5 @@
 import { Connection } from 'typeorm';
-import createConnection from '@app/database';
+import createConnection from '@server/database';
 
 process.env.APP_SECRET = 'test-secret';
 

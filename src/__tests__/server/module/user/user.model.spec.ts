@@ -1,4 +1,4 @@
-import User from '@app/module/user/user.model';
+import User from '@server/module/user/user.model';
 
 describe('User model', () => {
   describe('on update', () => {

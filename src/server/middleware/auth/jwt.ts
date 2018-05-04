@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy, ExtractJwt, StrategyOptions } from 'passport-jwt';
-import User, { UserInterface } from '@app/module/user/user.model';
-import appSecret from '@app/utils/appSecret';
+import User, { UserInterface } from '@server/module/user/user.model';
+import appSecret from '@server/utils/appSecret';
 
 const strategyOptions: StrategyOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -23,10 +23,10 @@ passport.use(
     });
 
     if (user) {
-      done(null, user.toJSON());
-    } else {
-      done(null, false);
+      return done(null, user);
     }
+
+    return done(null, false);
   }),
 );
 

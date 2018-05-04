@@ -8,9 +8,8 @@ const commonConfig = {
   password: process.env.TYPEORM_PASSWORD,
   migrationsRun: true,
   cli: {
-    entitiesDir: 'src/entity',
-    migrationsDir: 'src/migration',
-    subscribersDir: 'src/subscriber'
+    migrationsDir: 'src/server/migration',
+    subscribersDir: 'src/server/subscriber',
   }
 };
 
@@ -19,9 +18,9 @@ const productionConfig = {
   type: 'mysql',
   host: 'localhost',
   database: 'nodetech_production',
-  entities: ['dist/module/**/*.model.js'],
-  migrations: ['dist/migration/**/*.js'],
-  subscribers: ['dist/subscriber/**/*.js'],
+  entities: ['dist/server/module/**/*.model.js'],
+  migrations: ['dist/server/migration/**/*.js'],
+  subscribers: ['dist/server/subscriber/**/*.js'],
 }
 
 const developmentConfig = {
@@ -30,9 +29,9 @@ const developmentConfig = {
   type: 'mysql',
   host: 'localhost',
   database: 'nodetech_development',
-  entities: ['src/module/**/*.model.ts'],
-  migrations: ['src/migration/**/*.ts'],
-  subscribers: ['src/subscriber/**/*.ts'],
+  entities: ['src/server/module/**/*.model.ts'],
+  migrations: ['src/server/migration/**/*.ts'],
+  subscribers: ['src/server/subscriber/**/*.ts'],
 };
 
 

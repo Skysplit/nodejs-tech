@@ -1,8 +1,8 @@
 import request from 'supertest';
-import createApp from '@app/createApp';
-import User from '@app/module/user/user.model';
+import createApp from '@server/createApp';
+import User from '@server/module/user/user.model';
 import { Application } from 'express';
-import createJWT from '@app/utils/createJWT';
+import createJWT from '@server/utils/createJWT';
 
 describe('/users', () => {
   let app: Application;
@@ -10,6 +10,7 @@ describe('/users', () => {
 
   beforeAll(async () => {
     app = await createApp();
+
     user = User.create({
       email: 'test@example.com',
       password: 'Secret99',
@@ -47,11 +48,11 @@ describe('/users', () => {
         password: 'Secret99',
       });
 
-      expect(response.status).toEqual(200);
       expect(response.body).toEqual({
         success: true,
         token: expect.any(String),
       });
+      expect(response.status).toEqual(200);
     });
 
     describe('when no credentials are provided', () => {
