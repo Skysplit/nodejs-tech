@@ -1,5 +1,5 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, Index } from 'typeorm';
-import Playlist from '@app/module/playlist/playlist.model';
+import Playlist from '@server/module/playlist/playlist.model';
 
 interface TrackInterface {
   id: number;

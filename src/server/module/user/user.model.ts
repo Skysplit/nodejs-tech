@@ -8,8 +8,8 @@ import {
   BeforeUpdate,
   OneToMany,
 } from 'typeorm';
-import { hashPassword } from '@app/utils/password';
-import Playlist from '@app/module/playlist/playlist.model';
+import { hashPassword } from '@server/utils/password';
+import Playlist from '@server/module/playlist/playlist.model';
 
 export interface UserInterface {
   id: number;
@@ -46,8 +46,8 @@ export default class User extends BaseEntity implements UserInterface {
   }
 
   @BeforeInsert()
-  async hashPassword() {
-    this.password = await hashPassword(this.password);
+  hashPassword() {
+    this.password = hashPassword(this.password);
   }
 
   toJSON() {

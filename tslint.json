@@ -8,6 +8,6 @@
     }
   },
   "linterOptions": {
-    "exclude": ["src/migration/**/*.ts"]
+    "exclude": ["src/server/migration/**/*.ts"]
   }
 }

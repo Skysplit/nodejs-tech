@@ -7,8 +7,8 @@ import {
   ManyToOne,
   JoinTable,
 } from 'typeorm';
-import User from '@app/module/user/user.model';
-import Track from '@app/module/tracks/track.model';
+import User from '@server/module/user/user.model';
+import Track from '@server/module/tracks/track.model';
 
 export interface PlaylistInterface {
   id: number;

@@ -1,12 +1,16 @@
 import debug from 'debug';
 import errorhandler from 'errorhandler';
-import createApp from '@app/createApp';
-import createConnection from '@app/database';
-import isProduction from '@app/utils/isProduction';
+import createConnection from '@server/database';
+import createApp from '@server/createApp';
+import isProduction from '@server/utils/isProduction';
+import createNextApp from '@next/index';
 
 (async () => {
   await createConnection();
+  const nextApp = await createNextApp();
   const app = createApp();
+
+  app.use(nextApp);
 
   if (!isProduction()) {
     app.use(errorhandler());

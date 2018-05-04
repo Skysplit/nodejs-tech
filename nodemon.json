@@ -1,13 +1,14 @@
 {
   "ext": "ts js",
   "execMap": {
-    "ts": "ts-node"
+    "ts": "ts-node -P ./tsconfig.build.json"
   },
   "env": {
     "NODE_ENV": "development"
   },
   "watch": [
-    "src/**/*.ts"
+    "src/server/**/*.ts",
+    "src/next/**/*.ts"
   ],
   "ignore": [
     "*.spec.ts"

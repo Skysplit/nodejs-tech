@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
+    "module": "esnext",
+    "target": "esnext",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmitHelpers": true,
@@ -15,7 +17,10 @@
     "baseUrl": ".",
     "outDir": "./dist",
     "paths": {
-      "@app/*": ["./src/*"]
+      "@app/*": ["./src/*"],
+      "@server/*": ["./src/server/*"],
+      "@client/*": ["./src/client/*"],
+      "@next/*": ["./src/next/*"]
     }
   },
   "include": [
