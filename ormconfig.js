@@ -1,11 +1,18 @@
 const path = require('path');
 
-const env = process.env.NODE_ENV || 'production';
+const {
+  NODE_ENV,
+  TYPEORM_USERNAME,
+  TYPEORM_PASSWORD,
+  TYPEORM_DATABASE,
+} = process.env;
+const env = NODE_ENV || 'production';
 
 const commonConfig = {
   name: 'default',
-  username: process.env.TYPEORM_USERNAME,
-  password: process.env.TYPEORM_PASSWORD,
+  username: TYPEORM_USERNAME,
+  password: TYPEORM_PASSWORD,
+  database: TYPEORM_DATABASE,
   migrationsRun: true,
   cli: {
     migrationsDir: 'src/server/migration',
@@ -17,7 +24,7 @@ const productionConfig = {
   ...commonConfig,
   type: 'mysql',
   host: 'localhost',
-  database: 'nodetech_production',
+  database: commonConfig.database || 'nodetech_production',
   entities: ['dist/server/module/**/*.model.js'],
   migrations: ['dist/server/migration/**/*.js'],
   subscribers: ['dist/server/subscriber/**/*.js'],
@@ -28,7 +35,7 @@ const developmentConfig = {
   logging: true,
   type: 'mysql',
   host: 'localhost',
-  database: 'nodetech_development',
+  database: commonConfig.database || 'nodetech_development',
   entities: ['src/server/module/**/*.model.ts'],
   migrations: ['src/server/migration/**/*.ts'],
   subscribers: ['src/server/subscriber/**/*.ts'],
@@ -40,7 +47,7 @@ const testingConfig = {
   migrationsRun: false,
   logging: false,
   type: 'mysql',
-  database: 'nodetech_testing',
+  database: developmentConfig.database || 'testing',
 };
 
 const config = {

@@ -6,13 +6,17 @@ import isProduction from '@server/utils/isProduction';
 import createNextApp from '@next/index';
 
 (async () => {
+  const info = debug('app:info');
+
   await createConnection();
-  const nextApp = await createNextApp();
   const app = createApp();
 
-  app.use(nextApp);
+  createNextApp().then((nextApp) => {
+    info('NextJS app is ready!');
+    app.use(nextApp);
+  });
 
-  if (!isProduction()) {
+  if (!isProduction) {
     app.use(errorhandler());
   }
 
@@ -21,7 +25,6 @@ import createNextApp from '@next/index';
 
   server.on('error', error => debug('app:error')(error));
   server.on('listening', () => {
-    const info = debug('app:info');
     info('App is running on port %d', port);
     info('App environment is %s', process.env.NODE_ENV);
   });

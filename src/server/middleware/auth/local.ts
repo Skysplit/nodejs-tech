@@ -1,7 +1,6 @@
 import passport from 'passport';
 import { RequestHandler } from 'express';
 import { Strategy, IStrategyOptions } from 'passport-local';
-import { get } from 'lodash';
 import User from '@server/module/user/user.model';
 import { verifyPassword } from '@server/utils/password';
 import createJWT from '@server/utils/createJWT';
@@ -38,9 +37,8 @@ const local: RequestHandler = (req, res, next) => (
     }
 
     if (!user) {
-      return res.status(422).json({
-        message: get(info, 'message', 'Incorrect credentials'),
-      });
+      const { message = 'Incorrect credentials' } = info || {};
+      return res.status(422).json({ message });
     }
 
     return res.json({

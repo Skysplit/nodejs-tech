@@ -1,12 +1,13 @@
 module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['js', 'ts'],
+  globals: {
+    'ts-jest': {
+      tsConfigFile: './tsconfig.build.json',
+    },
+  },
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
   transform: {
     '^.+\\.tsx?$': './node_modules/ts-jest/preprocessor.js',
   },
-  testMatch: [
-    '**/*.(test|spec).(ts|js)',
-  ],
   moduleNameMapper: {
     '@app/(.*)$': '<rootDir>/src/$1',
     '@server/(.*)$': '<rootDir>/src/server/$1',
@@ -15,12 +16,10 @@ module.exports = {
   },
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
-    // Ignore patterns
     '!src/index.ts',
-    '!src/**/__tests__/**/*',
-    '!src/server/{database,index}.ts',
     '!src/{bootstrap,next}/**/*',
-    '!{ormconfig,next.config}.js',
+    '!src/**/__tests__/**/*',
+    '!src/**/*.d.ts',
   ],
-  setupTestFrameworkScriptFile: './src/__tests__/__setup.ts'
-}
+  coverageReporters: ['lcov', 'json'],
+};
