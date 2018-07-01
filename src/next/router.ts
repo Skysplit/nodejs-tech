@@ -1,7 +1,3 @@
-import Router from 'next-routes';
+import router from './routes';
 
-const router = new Router();
-
-router.add('/', 'home');
-
-export default router;
+export default router.Router;
