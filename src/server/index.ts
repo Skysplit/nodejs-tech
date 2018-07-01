@@ -8,8 +8,6 @@ import createNextApp from '@next/index';
 (async () => {
   const info = debug('app:info');
 
-  console.log('test');
-
   await createConnection();
   const app = createApp();
 
