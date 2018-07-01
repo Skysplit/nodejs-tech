@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export interface IndexPageProps {
-
-}
-
-export default class IndexPage extends Component<IndexPageProps> {
+export default class HomePage extends PureComponent<{}> {
   render() {
     return (
       <h1>Hello world</h1>

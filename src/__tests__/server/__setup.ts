@@ -1,8 +1,6 @@
 import { Connection } from 'typeorm';
 import createConnection from '@server/database';
 
-process.env.APP_SECRET = 'test-secret';
-
 let connection: Connection;
 
 beforeAll(async () => {
@@ -15,3 +13,7 @@ beforeAll(async () => {
   await connection.runMigrations({ transaction: true });
 });
 
+afterAll(async () => {
+  await connection.close();
+  connection = null;
+});
