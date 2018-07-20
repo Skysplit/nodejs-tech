@@ -1,2 +1,4 @@
 import './bootstrap';
-import './server';
+import server from './server';
+
+server();

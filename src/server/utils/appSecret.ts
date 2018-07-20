@@ -1,3 +1,1 @@
-const env = process.env.APP_SECRET;
-
-export default env;
+export default () => process.env.APP_SECRET;

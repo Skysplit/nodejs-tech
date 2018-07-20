@@ -1,14 +1,12 @@
 import debug from 'debug';
 import errorhandler from 'errorhandler';
-import createConnection from '@server/database';
 import createApp from '@server/createApp';
 import isProduction from '@server/utils/isProduction';
 import createNextApp from '@next/index';
 
-(async () => {
+export default async () => {
+  const { PORT, NODE_ENV } = process.env;
   const info = debug('app:info');
-
-  await createConnection();
   const app = createApp();
 
   createNextApp().then((nextApp) => {
@@ -16,16 +14,16 @@ import createNextApp from '@next/index';
     app.use(nextApp);
   });
 
-  if (!isProduction) {
+  if (!isProduction()) {
     app.use(errorhandler());
   }
 
-  const port = process.env.PORT || 8000;
+  const port = PORT || 8000;
   const server = app.listen(port);
 
   server.on('error', error => debug('app:error')(error));
   server.on('listening', () => {
     info('App is running on port %d', port);
-    info('App environment is %s', process.env.NODE_ENV);
+    info('App environment is %s', NODE_ENV);
   });
-})();
+};
