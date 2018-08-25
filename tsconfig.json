@@ -20,7 +20,8 @@
       "@app/*": ["./src/*"],
       "@server/*": ["./src/server/*"],
       "@client/*": ["./src/client/*"],
-      "@next/*": ["./src/next/*"]
+      "@next/*": ["./src/next/*"],
+      "@test/*": ["./src/__tests__/*"]
     }
   },
   "include": [

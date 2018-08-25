@@ -4,7 +4,7 @@ services:
   - mysql
 
 node_js:
-  - 10.5
+  - 10.9
 
 cache:
   directories:
@@ -18,7 +18,14 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
+script:
+  - npm run typecheck
+  - npm run lint
+  - npm run test:client:ci
+  - npm run test:server:ci
+
 after_script:
+  - npm run test:coverage:combine
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 env:

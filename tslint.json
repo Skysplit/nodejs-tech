@@ -1,11 +1,30 @@
 {
-  "extends": "tslint-config-airbnb",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-airbnb",
+    "tslint-react"
+  ],
   "rules": {
     "import-name": false,
-    "no-unused-variable": true,
+    "member-access": false,
     "no-console": {
       "severity": "warn"
-    }
+    },
+    "no-unused-variable": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "jsx-ban-elements": {
+      "options": []
+    },
+    "jsx-curly-spacing": {
+      "options": ["never"]
+    },
+    "jsx-no-bind": true,
+    "jsx-no-lambda": true,
+    "jsx-no-string-ref": true,
+    "jsx-self-close": true,
+    "jsx-space-before-trailing-slash": true,
+    "jsx-wrap-multiline": true
   },
   "linterOptions": {
     "exclude": ["src/server/migration/**/*.ts"]
