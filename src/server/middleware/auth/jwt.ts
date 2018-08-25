@@ -7,7 +7,7 @@ const strategyOptions: StrategyOptions = {
   secretOrKey: appSecret(),
 };
 
-interface JWTPayload {
+interface IJWTPayload {
   /**
    * When the token was issued at
    */
@@ -15,7 +15,7 @@ interface JWTPayload {
 }
 
 passport.use(
-  new Strategy(strategyOptions, async (payload: JWTPayload, done) => {
+  new Strategy(strategyOptions, async (payload: IJWTPayload, done) => {
     /**
      * TODO: Validate token payload
      */

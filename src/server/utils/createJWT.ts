@@ -1,4 +1,8 @@
 import jwt from 'jsonwebtoken';
 import appSecret from './appSecret';
 
-export default (payload: any, options?: jwt.SignOptions, secret = appSecret()) => jwt.sign(payload, secret, options);
+const createJWT = (payload: any, options?: jwt.SignOptions, secret = appSecret()) => (
+  jwt.sign(payload, secret, options)
+);
+
+export default createJWT;

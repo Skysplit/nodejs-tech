@@ -6,7 +6,6 @@ export default class HomePage extends PureComponent<{}> {
     return (
       <Fragment>
         <h1>Hello world</h1>
-
         <Link route="test">
           <a>Go to some page</a>
         </Link>

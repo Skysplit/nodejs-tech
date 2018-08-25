@@ -1,7 +1,10 @@
 {
-  "name": "expressjs-typescript-app",
+  "name": "nodejs-tech",
   "version": "1.0.0",
-  "description": "",
+  "description": "NodeJS/TypeScript learning project",
+  "repository": {
+    "url": "https://github.com/Skysplit/nodejs-tech"
+  },
   "main": "src/index.js",
   "scripts": {
     "cli": "NODE_ENV=production node -r ./dist/bootstrap",
@@ -16,15 +19,14 @@
     "build:server": "tsc -p ./tsconfig.build.json",
     "build:client": "next build src/client",
     "lint": "tslint --format stylish --project ./tsconfig.json --config ./tslint.json",
-    "test": "npm run lint && npm run test:ci && npm run test:coverage",
-    "test:ci": "npm run test:client:ci && npm run test:server:ci",
+    "typecheck": "tsc -p . --noEmit",
     "test:client": "cross-env NODE_ENV=testing jest --config jest.client.js",
     "test:client:ci": "npm run test:client -- --coverage --runInBand --ci",
     "test:client:watch": "npm run test:client -- --watch",
     "test:server": "cross-env NODE_ENV=testing APP_SECRET=testing jest --config jest.server.js --runInBand",
     "test:server:ci": "npm run test:server -- --coverage --ci",
     "test:server:watch": "npm run test:server -- --watch",
-    "test:coverage": "istanbul report json lcov clover text"
+    "test:coverage:combine": "istanbul report json lcov clover text"
   },
   "author": "Tomasz Romik",
   "license": "MIT",
@@ -95,7 +97,9 @@
     "ts-node": "^7.0.1",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.10.0",
     "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.0.1"
   }
 }
