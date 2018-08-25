@@ -8,7 +8,8 @@
   },
   "watch": [
     "src/server/**/*.ts",
-    "src/next/**/*.ts"
+    "src/next/**/*.ts",
+    "next.config.js"
   ],
   "ignore": [
     "*.spec.ts"
