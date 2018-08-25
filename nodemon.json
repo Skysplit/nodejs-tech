@@ -9,7 +9,11 @@
   "watch": [
     "src/server/**/*.ts",
     "src/next/**/*.ts",
-    "next.config.js"
+    "tsconfig.*.json",
+    "tsconfig.json",
+    "next.config.js",
+    ".babelrc",
+    ".env"
   ],
   "ignore": [
     "*.spec.ts"
