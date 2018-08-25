@@ -1,15 +1,12 @@
 plugins:
   nodesecurity:
     enabled: true
-  tslint:
-    enabled: true
-    config: tslint.json
   duplication:
     enabled: true
     config:
       languages:
         - javascript:
 exclude_patterns:
-  - "src/__tests__/**/*"
   - "**/*.d.ts"
-  - "src/server/migration"
+  - "src/__tests__/**/*"
+  - "src/server/migration/**/*"
