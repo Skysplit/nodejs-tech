@@ -1,0 +1,29 @@
+const path = require('path')
+
+const { NODE_ENV } = process.env;
+
+const development = {
+  dialect: 'sqlite',
+  storage: path.resolve(__dirname, 'database', 'development.sqlite')
+}
+
+const production = {
+  ...development,
+  storage: path.resolve(__dirname, 'databse', 'production.sqlite'),
+}
+
+const test = {
+  ...development,
+  storage: ':memory:',
+}
+
+module.exports = {
+  config: {
+    test,
+    production,
+    development,
+  },
+  'models-path': path.resolve(__dirname, 'src', 'server', 'modules', '**', '*.model.ts'),
+  'seeders-path': path.resolve(__dirname, 'src', 'server', 'seeds'),
+  'migrations-path': path.resolve(__dirname, 'src', 'server', 'migrations'),
+}
