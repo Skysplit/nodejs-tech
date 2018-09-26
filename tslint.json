@@ -5,6 +5,7 @@
     "tslint-react"
   ],
   "rules": {
+    "variable-name": false,
     "import-name": false,
     "member-access": false,
     "no-console": {
