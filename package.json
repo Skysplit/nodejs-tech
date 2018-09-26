@@ -9,6 +9,8 @@
   "scripts": {
     "cli": "NODE_ENV=production node -r ./dist/bootstrap",
     "cli:dev": "ts-node -P ./tsconfig.build.json -r ./src/bootstrap",
+    "sequelize": "npm run cli -- node_modules/.bin/sequelize",
+    "sequelize:dev": "npm run cli:dev -- node_modules/.bin/sequelize",
     "serve": "NODE_ENV=production node dist/index.js",
     "start": "npm run serve",
     "start:dev": "nodemon ./src/index.ts",
@@ -55,6 +57,7 @@
     "react-dom": "^16.5.2",
     "reflect-metadata": "^0.1.12",
     "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.1.1",
     "sequelize-typescript": "^0.6.6",
     "source-map-support": "^0.5.8",
     "tsconfig-paths": "^3.5.0"
